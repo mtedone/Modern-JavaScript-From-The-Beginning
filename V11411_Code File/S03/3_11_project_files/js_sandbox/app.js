@@ -1,35 +1,36 @@
-const form = document.querySelector('form');
-const taskInput = document.getElementById('task');
-const heading = document.querySelector('h5');
-const select = document.querySelector('select');
+// EVENT BUBBLING
 
-// Clear input
-taskInput.value = '';
+// document.querySelector('.card-title').addEventListener('click', function(){
+//   console.log('card title');
+// });
 
-// form.addEventListener('submit', runEvent);
+// document.querySelector('.card-content').addEventListener('click', function(){
+//   console.log('card content');
+// });
 
-// Key events on input
-// taskInput.addEventListener('keydown', runEvent);
-// taskInput.addEventListener('keyup', runEvent);
-// taskInput.addEventListener('keypress', runEvent);
-// taskInput.addEventListener('focus', runEvent);
-// taskInput.addEventListener('blur', runEvent);
-// taskInput.addEventListener('cut', runEvent);
-// taskInput.addEventListener('paste', runEvent);
-// taskInput.addEventListener('input', runEvent);
-// taskInput.addEventListener('input', runEvent);
+// document.querySelector('.card').addEventListener('click', function(){
+//   console.log('card');
+// });
 
-select.addEventListener('change', runEvent);
+// document.querySelector('.col').addEventListener('click', function(){
+//   console.log('col');
+// });
 
+// EVENT DELGATION
 
-function runEvent(e) {
-  console.log(`EVENT TYPE: ${e.type}`);
-  //
-  console.log(e.target.value);
-  //
-  // heading.innerText = `${e.target.value}`;
+// const delItem = document.querySelector('.delete-item');
 
-  //Get input value
-  // console.log(taskInput.value);
-  // e.preventDefault();
+// delItem.addEventListener('click', deleteItem);
+
+document.body.addEventListener('click', deleteItem);
+
+function deleteItem(e){
+  // if(e.target.parentElement.className === 'delete-item secondary-content'){
+  //   console.log('delete item');
+  // }
+
+  if(e.target.parentElement.classList.contains('delete-item')){
+    console.log('delete item');
+    e.target.parentElement.parentElement.remove();
+  }
 }
