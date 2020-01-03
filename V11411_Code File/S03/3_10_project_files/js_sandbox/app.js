@@ -1,41 +1,28 @@
-const form = document.querySelector('form');
-const taskInput = document.getElementById('task');
+const clearBtn = document.querySelector('.clear-tasks');
+const card = document.querySelector('.card');
 const heading = document.querySelector('h5');
-const select = document.querySelector('select');
 
-// Clear input
-taskInput.value = '';
+// Click
+// clearBtn.addEventListener('click', runEvent);
 
-// form.addEventListener('submit', runEvent);
+// Double click
+// clearBtn.addEventListener('dblclick', runEvent);
 
-// Keydown
-//taskInput.addEventListener('keydown', runEvent);
-// Keydown
-// taskInput.addEventListener('keyup', runEvent);
-// Keypress
-// taskInput.addEventListener('keypress', runEvent);
-// Focus
-// taskInput.addEventListener('focus', runEvent);
-// Blur
-// taskInput.addEventListener('blur', runEvent);
-// Cut
-// taskInput.addEventListener('cut', runEvent);
-// Paste
-// taskInput.addEventListener('paste', runEvent);
-// Input
-// taskInput.addEventListener('input', runEvent);
-// Change
-select.addEventListener('change', runEvent);
+// Mouse events
+// clearBtn.addEventListener('mousedown', runEvent);
+// clearBtn.addEventListener('mouseup', runEvent);
+// card.addEventListener('mouseenter', runEvent);
+// card.addEventListener('mouseleave', runEvent);
+// card.addEventListener('mouseover', runEvent);
+// card.addEventListener('mouseout', runEvent);
+card.addEventListener('mousemove', runEvent);
 
-function runEvent(e){
+
+// Event handler
+function runEvent(e) {
   console.log(`EVENT TYPE: ${e.type}`);
 
-  //console.log(e.target.value);
+  heading.textContent = `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`
 
-  // heading.innerText = e.target.value;
-
-  // Get input value
-  // console.log(taskInput.value);
-
-  // e.preventDefault();
+  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`
 }
