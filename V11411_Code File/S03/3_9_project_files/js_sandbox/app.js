@@ -1,31 +1,24 @@
-const clearBtn = document.querySelector('.clear-tasks');
-const card = document.querySelector('.card');
-const heading = document.querySelector('h5');
+// document.querySelector('.clear-tasks').addEventListener('click',
+//     function(e) {
+//   console.log('Hello World');
+//
+//   e.preventDefault();
+// });
 
-// Click
-// clearBtn.addEventListener('click', runEvent);
-// Doubleclick
-// clearBtn.addEventListener('dblclick', runEvent);
-// Mousedown
-// clearBtn.addEventListener('mousedown', runEvent);
-// Mouseup
-// clearBtn.addEventListener('mouseup', runEvent);
-// Mouseenter
-// card.addEventListener('mouseenter', runEvent);
-// Mouseleave
-// card.addEventListener('mouseleave', runEvent);
-// Mouseover
-// card.addEventListener('mouseover', runEvent);
-// Mouseout
-// card.addEventListener('mouseout', runEvent);
-// Mousemove
-card.addEventListener('mousemove', runEvent);
+document.querySelector('.clear-tasks').addEventListener('click',
+    onClick);
 
-// Event Handler
-function runEvent(e) {
-  console.log(`EVENT TYPE: ${e.type}`);
+function onClick(e) {
+    //
 
-  heading.textContent= `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`;
+  let val;
 
-  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`;
+  val = e;
+
+  // Event target element
+  val = e.target;
+  val = e.target.className;
+
+
+  console.log(val);
 }
