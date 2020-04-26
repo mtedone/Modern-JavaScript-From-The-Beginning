@@ -10,8 +10,10 @@ loadEventListeners();
 
 // Load all event listeners
 function loadEventListeners() {
+
   // DOM Load event
-  document.addEventListener('DOMContentLoaded', getTasks);
+  document.addEventListener('DOMContentLoaded', initialiseUiWithExistingTasks);
+
   // Add task event
   form.addEventListener('submit', addTask);
   // Remove task event
@@ -22,48 +24,25 @@ function loadEventListeners() {
   filter.addEventListener('keyup', filterTasks);
 }
 
-// Get Tasks from LS
-function getTasks() {
+// Loads all tasks from the local storage
+function loadInitialTasksFromLocalStorage() {
   let tasks;
-  if(localStorage.getItem('tasks') === null){
+  if (localStorage.getItem('tasks') == null) {
     tasks = [];
   } else {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-
-  tasks.forEach(function(task){
-    // Create li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item';
-    // Create text node and append to li
-    li.appendChild(document.createTextNode(task));
-    // Create new link element
-    const link = document.createElement('a');
-    // Add class
-    link.className = 'delete-item secondary-content';
-    // Add icon html
-    link.innerHTML = '<i class="fa fa-remove"></i>';
-    // Append the link to li
-    li.appendChild(link);
-
-    // Append li to ul
-    taskList.appendChild(li);
-  });
+  return tasks;
 }
 
-// Add Task
-function addTask(e) {
-  if(taskInput.value === '') {
-    alert('Add a task');
-  }
-
+// Adds a single task to the task list
+function addTaskToTaskList(task) {
   // Create li element
   const li = document.createElement('li');
   // Add class
   li.className = 'collection-item';
   // Create text node and append to li
-  li.appendChild(document.createTextNode(taskInput.value));
+  li.appendChild(document.createTextNode(task));
   // Create new link element
   const link = document.createElement('a');
   // Add class
@@ -75,8 +54,28 @@ function addTask(e) {
 
   // Append li to ul
   taskList.appendChild(li);
+}
 
-  // Store in LS
+// Get Tasks from LS
+function initialiseUiWithExistingTasks() {
+
+  let tasks = loadInitialTasksFromLocalStorage();
+
+  tasks.forEach(function (task) {
+    addTaskToTaskList(task);
+  })
+}
+
+// Add Task
+function addTask(e) {
+
+  if(taskInput.value === '') {
+    alert('Add a task');
+  }
+
+  addTaskToTaskList(taskInput.value);
+
+  // Store task in local storate
   storeTaskInLocalStorage(taskInput.value);
 
   // Clear input
@@ -85,17 +84,11 @@ function addTask(e) {
   e.preventDefault();
 }
 
-// Store Task
+// Stores task in LS
 function storeTaskInLocalStorage(task) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+  let tasks = loadInitialTasksFromLocalStorage();
 
   tasks.push(task);
-
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
@@ -113,12 +106,8 @@ function removeTask(e) {
 
 // Remove from LS
 function removeTaskFromLocalStorage(taskItem) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+
+  let tasks = loadInitialTasksFromLocalStorage();
 
   tasks.forEach(function(task, index){
     if(taskItem.textContent === task){
