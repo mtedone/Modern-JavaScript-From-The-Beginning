@@ -10,7 +10,7 @@
 // Game values
 let min = 1,
     max = 10,
-    winningNum = 2,
+    winningNum = getRandomNum(min, max),
     guessesLeft  = 3;
 
 // UI elements
@@ -25,6 +25,13 @@ const game = document.getElementById('game'),
 minNum.textContent = min;
 maxNum.textContent = max;
 
+// Play again event listener
+game.addEventListener('mousedown', function (e) {
+    if (e.target.className === 'play-again') {
+        window.location.reload();
+    }
+})
+
 // Listens for guess
 guessBtn.addEventListener('click', function () {
     let guess = parseInt(guessInput.value);
@@ -36,18 +43,50 @@ guessBtn.addEventListener('click', function () {
 
     // Check if won
     if (guess === winningNum) {
-        // Disable input
-        guessInput.disabled = true;
-        // Change border to green to show they've wom
-        guessInput.style.borderColor = 'green';
-        // Set message
-        setMessage(`${winningNum} is correct! YOU WIN!`, 'green');
-    } else {
+        // Game over - won
+        gameOver(true, `${winningNum} is correct! YOU WIN!`);
 
+    } else {
+        guessesLeft -= 1;
+
+        if (guessesLeft === 0) {
+            // Game over - lost
+            gameOver(false, `Game over, you lost. The correct number was ${winningNum}`);
+        } else {
+
+            guessInput.style.borderColor = 'red';
+
+            // Game continuous - answer wrong
+            setMessage(`${guess} is not correct. ${guessesLeft} guesses left`, 'red');
+
+            // Clear input
+            guessInput.value = '';
+
+        }
     }
 });
 
 function setMessage(msg, color) {
     message.style.color = color;
     message.textContent = msg;
+}
+
+function gameOver(won, msg) {
+    let color;
+    won === true ? color = 'green' : color = 'red';
+    // Disable input
+    guessInput.disabled = true;
+    // Change border color
+    guessInput.style.borderColor = color;
+    // Set message
+    setMessage(msg, color);
+
+    // Play again?
+    guessBtn.value = "Play again";
+    guessBtn.className += 'play-again';
+}
+
+// Generates a random winning number
+function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
