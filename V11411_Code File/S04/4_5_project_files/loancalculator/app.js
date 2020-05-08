@@ -1,9 +1,15 @@
 // Listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults);
+document.getElementById('loan-form').addEventListener('submit', function (e) {
+  // Hide results
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+
+  // Show loader
+  e.preventDefault();
+});
 
 // Calculate results
-function calculateResults(e) {
-  e.preventDefault();
+function calculateResults() {
 
   // UI vars
   const amount = document.getElementById('amount');

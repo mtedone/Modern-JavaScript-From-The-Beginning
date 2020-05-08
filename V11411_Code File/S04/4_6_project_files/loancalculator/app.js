@@ -1,20 +1,19 @@
 // Listen for submit
-document.getElementById('loan-form').addEventListener('submit', function(e){
+document.getElementById('loan-form').addEventListener('submit', function (e) {
   // Hide results
   document.getElementById('results').style.display = 'none';
-  
-  // Show loader
   document.getElementById('loading').style.display = 'block';
 
   setTimeout(calculateResults, 2000);
 
+  // Show loader
   e.preventDefault();
 });
 
-// Calculate Results
-function calculateResults(){
-  console.log('Calculating...');
-  // UI Vars
+// Calculate results
+function calculateResults() {
+
+  // UI vars
   const amount = document.getElementById('amount');
   const interest = document.getElementById('interest');
   const years = document.getElementById('years');
@@ -22,39 +21,37 @@ function calculateResults(){
   const totalPayment = document.getElementById('total-payment');
   const totalInterest = document.getElementById('total-interest');
 
-  const principal = parseFloat(amount.value);
+  const principle = parseFloat(amount.value);
   const calculatedInterest = parseFloat(interest.value) / 100 / 12;
   const calculatedPayments = parseFloat(years.value) * 12;
 
-  // Compute monthly payment
+  // Compute the monthly payments
   const x = Math.pow(1 + calculatedInterest, calculatedPayments);
-  const monthly = (principal*x*calculatedInterest)/(x-1);
+  const monthly = (principle * x * calculatedInterest) / (x - 1);
 
-  if(isFinite(monthly)) {
+  if (isFinite(monthly)) {
     monthlyPayment.value = monthly.toFixed(2);
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
-    totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+    totalInterest.value = ((monthly * calculatedPayments) - principle).toFixed(2);
 
     // Show results
     document.getElementById('results').style.display = 'block';
 
     // Hide loader
     document.getElementById('loading').style.display = 'none';
-
   } else {
     showError('Please check your numbers');
   }
 }
 
-// Show Error
-function showError(error){
-  // Hide results
+function showError(error) {
+
+  // Show results
   document.getElementById('results').style.display = 'none';
-  
+
   // Hide loader
   document.getElementById('loading').style.display = 'none';
-
-  // Create a div
+  // Creates a div
   const errorDiv = document.createElement('div');
 
   // Get elements
@@ -75,6 +72,6 @@ function showError(error){
 }
 
 // Clear error
-function clearError(){
+function clearError() {
   document.querySelector('.alert').remove();
 }
