@@ -55,8 +55,9 @@ class UI {
   }
 }
 
-// Local Storage Class
+// Local Storage class
 class Store {
+
   static getBooks() {
     let books;
     if(localStorage.getItem('books') === null) {
@@ -66,36 +67,29 @@ class Store {
     }
 
     return books;
-  }
 
+  }
   static displayBooks() {
     const books = Store.getBooks();
-
-    books.forEach(function(book){
-      const ui  = new UI;
-
-      // Add book to UI
+    books.forEach(function (book) {
+      const ui = new UI();
       ui.addBookToList(book);
     });
   }
 
   static addBook(book) {
     const books = Store.getBooks();
-
     books.push(book);
-
     localStorage.setItem('books', JSON.stringify(books));
   }
 
   static removeBook(isbn) {
     const books = Store.getBooks();
-
-    books.forEach(function(book, index){
-     if(book.isbn === isbn) {
-      books.splice(index, 1);
-     }
+    books.forEach(function (book, index) {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+      }
     });
-
     localStorage.setItem('books', JSON.stringify(books));
   }
 }
@@ -115,8 +109,6 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 
   // Instantiate UI
   const ui = new UI();
-
-  console.log(ui);
 
   // Validate
   if(title === '' || author === '' || isbn === '') {
