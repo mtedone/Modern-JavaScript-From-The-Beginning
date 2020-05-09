@@ -94,4 +94,4 @@ document.getElementById('book-list').addEventListener('click', function (e) {
   ui.showAlert('Book deleted!', 'success');
 
   e.preventDefault();
-})
+});
