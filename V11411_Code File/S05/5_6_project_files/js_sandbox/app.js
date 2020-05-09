@@ -20,14 +20,16 @@ class Person {
   }
 
   static addNumbers(x, y) {
-    return x + y;
+    return x+y;
   }
 }
 
-const mary = new Person('Mary', 'Williams', '11-13-1980');
+const mary = new Person('Mary', 'Poppins', '1972-05-20');
+console.log(mary);
+console.log(mary.greeting());
+console.log(mary.calculateAge());
 
-mary.getsMarried('Thompson');
-
+mary.getsMarried('Tedone');
 console.log(mary);
 
-console.log(Person.addNumbers(1,2));
+console.log(Person.addNumbers(1,3));
