@@ -1,19 +1,14 @@
 document.getElementById('button1').addEventListener('click', loadCustomer);
-
 document.getElementById('button2').addEventListener('click', loadCustomers);
 
-// Load Single Customer
 function loadCustomer(e) {
   const xhr = new XMLHttpRequest();
 
   xhr.open('GET', 'customer.json', true);
 
-  xhr.onload = function(){
-    if(this.status === 200) {
-      // console.log(this.responseText);
-
+  xhr.onload = function () {
+    if (xhr.status === 200) {
       const customer = JSON.parse(this.responseText);
-
       const output = `
         <ul>
           <li>ID: ${customer.id}</li>
@@ -30,22 +25,18 @@ function loadCustomer(e) {
   xhr.send();
 }
 
-
-// Load Customers
 function loadCustomers(e) {
   const xhr = new XMLHttpRequest();
 
   xhr.open('GET', 'customers.json', true);
 
-  xhr.onload = function(){
-    if(this.status === 200) {
-      // console.log(this.responseText);
-
+  xhr.onload = function () {
+    if (xhr.status === 200) {
       const customers = JSON.parse(this.responseText);
 
       let output = '';
 
-      customers.forEach(function(customer){
+      customers.forEach(function(customer) {
         output += `
         <ul>
           <li>ID: ${customer.id}</li>
@@ -55,7 +46,6 @@ function loadCustomers(e) {
         </ul>
       `;
       });
-
       document.getElementById('customers').innerHTML = output;
     }
   }
