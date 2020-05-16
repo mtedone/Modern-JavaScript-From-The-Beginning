@@ -1,72 +1,67 @@
 /**
- * EasyHTTP Library
- * Library for making HTTP requests
- *
- * @version 2.0.0
- * @author  Brad Traversy
- * @license MIT
- *
- **/
+ EasyHTTP library
+ Library for making HTTP requests
 
- class EasyHTTP {
-   
-  // Make an HTTP GET Request 
-  get(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-    });
-  }
+ @version 2.0.0
+ @author Marco Tedone
+ @licence MIT
+**/
 
-  // Make an HTTP POST Request
-  post(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-    });
-  }
+class EasyHTTP {
+    // Make HTTP GET requests
+    get(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => resolve(data))
+                .catch(err => reject(err));
+        });
+    }
 
-   // Make an HTTP PUT Request
-   put(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-    });
-  }
+    // Make HTTP POST request
+    post(url, body) {
+        return new Promise((resolve, reject) =>  {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(data => resolve(data))
+                .catch(err => reject(err));
+        });
+    }
 
-  // Make an HTTP DELETE Request
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(() => resolve('Resource Deleted...'))
-      .catch(err => reject(err));
-    });
-  }
+    // Make a put request
+    put(url, body) {
+        return new Promise((resolve, reject) =>  {
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(data => resolve(data))
+                .catch(err => reject(err));
+        });
+    }
 
- }
-
- 
+    // Make an HTTP DELETE request
+    delete(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type' : 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(() => resolve('Resource deleted'))
+                .catch(err => reject(err));
+        });
+    }
+}
