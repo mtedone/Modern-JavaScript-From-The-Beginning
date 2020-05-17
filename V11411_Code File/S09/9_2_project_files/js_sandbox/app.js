@@ -1,7 +1,7 @@
 let re;
-re = /hello/;
-re = /hello/i; // i =  case insensitive
-// re = /hello/g; // Global search
+// re = /hello/;
+re = /hello/i; // i = case insensitive
+// re = /hello/g; // g = global search
 
 // console.log(re);
 // console.log(re.source);
@@ -18,17 +18,17 @@ re = /hello/i; // i =  case insensitive
 // const result = re.test('Hello');
 // console.log(result);
 
-// match() - Return result array or null
+// match() - Returns results array or null but it works on the input match function
 // const str = 'Hello There';
 // const result = str.match(re);
 // console.log(result);
 
-// search() - Returns index of the first match if not found retuns -1
-// const str = 'Brad Hello There';
+// search() - Return index of the first match if not found it returns a -1
+// const str = 'Hello There';
 // const result = str.search(re);
 // console.log(result);
 
-// replace() - Return new string with some or all matches of a pattern
-// const str = 'Hello There';
-// const newStr = str.replace(re, 'Hi');
-// console.log(newStr);
+// replace() - Will return a new string with some or all matches of a pattern replaced
+const str = 'Hello There';
+const newString = str.replace(re, 'Hi');
+console.log(newString);
