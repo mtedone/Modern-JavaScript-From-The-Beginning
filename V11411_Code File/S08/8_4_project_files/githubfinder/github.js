@@ -1,16 +1,25 @@
 class Github {
   constructor() {
-    this.client_id = 'd9308aacf8b204d361fd';
-    this.client_secret = '84969aeef73956f4ec9e8716d1840532802bb81b';
+    // Not for production
+    this.client_id = '83fe06604b35ae6a251a';
+    this.client_secret = '956a41137ff03f53a1c351769ab3d5adc0b17b6a';
+    this.authenticationHeader = btoa(`${this.client_id}:${this.client_secret}`);
   }
 
   async getUser(user) {
-    const profileResponse = await fetch(`https://api.github.com/users/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`);
+    const fetchUrl = `https://api.github.com/users/${user}`;
+    const profileResponse =
+        await fetch(`${fetchUrl}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Basic ${this.authenticationHeader}`
+          }
+        });
 
     const profile = await profileResponse.json();
 
     return {
-      profile
+      profile: profile
     }
   }
 }

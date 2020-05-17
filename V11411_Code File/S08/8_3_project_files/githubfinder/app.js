@@ -13,7 +13,7 @@ searchUser.addEventListener('input', (e) => {
             .then(data => {
                 if (data.profile.message === 'Not Found') {
                     // Show alert
-
+                    ui.showAlert('User Not Found', 'alert alert-danger');
                 } else {
                     // Show profile
                     ui.showProfile(data.profile);
@@ -22,5 +22,6 @@ searchUser.addEventListener('input', (e) => {
         console.log(userText);
     } else {
         // Clear profile
+        ui.clearProfile();
     }
 })
