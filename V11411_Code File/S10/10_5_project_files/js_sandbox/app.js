@@ -1,11 +1,10 @@
-// MAPS = key-value pairs - can use ANY type as a key or value
-
+// Maps = key/value pairs - can use any type as key or value
 const map1 = new Map();
 
-// Set Keys
-const key1 = 'some string',
+// Set some keys
+const key1 = 'Some String',
       key2 = {},
-      key3 = function() {};
+      key3 = function () {};
 
 // Set map values by key
 map1.set(key1, 'Value of key1');
@@ -13,43 +12,42 @@ map1.set(key2, 'Value of key2');
 map1.set(key3, 'Value of key3');
 
 // Get values by key
-// console.log(map1.get(key1), map1.get(key2), map1.get(key3));
-
-// Count values
-// console.log(map1.size);
+// console.log(map1.get(key1));
+// console.log(map1.get(key2));
+// console.log(map1.get(key3));
 
 // ITERATING MAPS
 
 // Loop using for...of to get keys and values
 // for(let [key, value] of map1) {
-//   console.log(`${key} = ${value}`);
+//     console.log(`${key} = ${value}`);
 // }
 
-// Iterate keys only
+// Iterates keys only
 // for(let key of map1.keys()) {
-//   console.log(key);
+//     console.log(key);
 // }
 
-// Iterate values only
+// Iterates values only
 // for(let value of map1.values()) {
-//   console.log(value);
+//     console.log(value);
 // }
 
 // Loop with forEach
-// map1.forEach(function(value, key){
-//   console.log(`${key} = ${value}`);
+// map1.forEach( (key, value) => {
+//     console.log(key, value);
 // });
 
-// CONVERT TO ARRAYS
+// Convert to arrays
 
-// Create an array of the key value pairs
+// Create an array of key value pairs
 const keyValArr = Array.from(map1);
 console.log(keyValArr);
 
-// Create an array of the values
-const valArr = Array.from(map1.values());
-console.log(valArr);
+// Create an array of values
+const valuesArr = Array.from(map1.values());
+console.log(valuesArr);
 
-// Create an array of the keys
-const keyArr = Array.from(map1.keys());
-console.log(keyArr);
+// Create an array of keys
+const keysArr = Array.from(map1.keys());
+console.log(keysArr);
