@@ -1,56 +1,53 @@
-// Basic structure
+// Basic structure of the Module pattern
 
-// (function() {
+// (function () {
 //   // Declare private vars and functions
-
+//
 //   return {
-//     // Declare public var and functions
+//     // Declare public variables and functions
 //   }
 // })();
 
 // STANDARD MODULE PATTERN
-// const UICtrl = (function() {
+// const UICtrl = (function () {
 //   let text = 'Hello World';
-
-//   const changeText = function() {
+//
+//   // Private function
+//   const changeText = function () {
 //     const element = document.querySelector('h1');
 //     element.textContent = text;
 //   }
-
+//
+//   // This stuff is public
 //   return {
-//     callChangeText: function() {
+//     callChangeText: function () {
 //       changeText();
-//       // console.log(text);
+//       console.log(text);
 //     }
 //   }
 // })();
-
+//
 // UICtrl.callChangeText();
-// // UICtrl.changeText();
-
-// console.log(UICtrl.text);
 
 // REVEALING MODULE PATTERN
-const ItemCtrl = (function() {
-  let data = [];
+// const ItemCtrl = (function () {
+//   let data = [];
+//
+//   function add(item) {
+//     data.push(item);
+//     console.log('Item added...');
+//   }
+//   function get(id) {
+//     return data.find(item => {
+//       return item.id === id;
+//     });
+//   }
+//
+//   return {
+//     add: add,
+//     get: get
+//   }
+// })();
+//
+// ItemCtrl.add({id: 1, name: 'John'});
 
-  function add(item) {
-    data.push(item);
-    console.log('Item Added....');
-  }
-
-  function get(id) {
-    return data.find(item => {
-      return item.id === id;
-    });
-  }
-
-  return {
-    add: add,
-    // get: get
-  }
-})();
-
-ItemCtrl.add({id: 1, name: 'John'});
-ItemCtrl.add({id: 2, name: 'Mark'});
-console.log(ItemCtrl.get(2));
