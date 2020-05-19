@@ -1,14 +1,14 @@
-const Singleton = (function() {
+const Singleton = (function () {
   let instance;
 
   function createInstance() {
-    const object = new Object({name:'Brad'});
+    const object = new Object({name: 'Marco'});
     return object;
   }
 
   return {
-    getInstance: function() {
-      if(!instance){
+    getInstance: function () {
+      if(!instance) {
         instance = createInstance();
       }
       return instance;
@@ -18,7 +18,5 @@ const Singleton = (function() {
 
 const instanceA = Singleton.getInstance();
 const instanceB = Singleton.getInstance();
-
+console.log(instanceA);
 console.log(instanceA === instanceB);
-
-// console.log(instanceA);
