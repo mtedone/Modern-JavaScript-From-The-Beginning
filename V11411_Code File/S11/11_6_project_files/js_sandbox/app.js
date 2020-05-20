@@ -1,34 +1,34 @@
-const User = function(name) {
+const User = function (name) {
   this.name = name;
   this.chatroom = null;
 }
 
 User.prototype = {
-  send: function(message, to) {
+  send: function (message, to) {
     this.chatroom.send(message, this, to);
   },
-  recieve: function(message, from) {
+  receive: function (message, from) {
     console.log(`${from.name} to ${this.name}: ${message}`);
   }
 }
 
-const Chatroom = function() {
-  let users = {}; // list of users
+const Chatroom = function () {
+
+  let users = {}; // List of users
 
   return {
-    register: function(user) {
+    register: function (user) {
       users[user.name] = user;
       user.chatroom = this;
     },
-    send: function(message, from, to) {
+    send: function (message, from, to) {
       if(to) {
         // Single user message
-        to.recieve(message, from);
+        to.receive(message, from);
       } else {
-        // Mass message
         for(key in users) {
           if(users[key] !== from) {
-            users[key].recieve(message, from);
+            users[key].receive(message, from);
           }
         }
       }
@@ -36,16 +36,16 @@ const Chatroom = function() {
   }
 }
 
-const brad = new User('Brad');
+const marco = new User('Marco');
 const jeff = new User('Jeff');
-const sara = new User('Sara');
+const sarah = new User('Sarah');
 
-const chatroom = new Chatroom();
+const chatRoom = new Chatroom();
 
-chatroom.register(brad);
-chatroom.register(jeff);
-chatroom.register(sara);
+chatRoom.register(marco);
+chatRoom.register(jeff);
+chatRoom.register(sarah);
 
-brad.send('Hello Jeff', jeff);
-sara.send('Hello Brad, you are the best dev ever!', brad);
-jeff.send('Hello Everyone!!!!');
+marco.send('Hello Jeff', jeff);
+jeff.send('Hello Marco', marco);
+marco.send('Hi everyone');
