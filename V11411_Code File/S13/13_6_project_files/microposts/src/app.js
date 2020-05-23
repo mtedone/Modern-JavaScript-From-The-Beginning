@@ -1,5 +1,5 @@
-import { http } from './http';
-import { ui } from './ui';
+import { http } from "./http";
+import { ui } from "./ui";
 
 // Get posts on DOM load
 document.addEventListener('DOMContentLoaded', getPosts);
@@ -7,29 +7,29 @@ document.addEventListener('DOMContentLoaded', getPosts);
 // Listen for add post
 document.querySelector('.post-submit').addEventListener('click', submitPost);
 
-// Get Posts
 function getPosts() {
-  http.get('http://localhost:3000/posts')
-    .then(data => ui.showPosts(data))
-    .catch(err => console.log(err));
+    http.get('http://localhost:3000/posts')
+        .then(data => ui.showPosts(data))
+        .catch(err => console.log(err));
 }
 
-// Submit Post
 function submitPost() {
-  const title = document.querySelector('#title').value;
-  const body = document.querySelector('#body').value;
+    const title = document.querySelector('#title').value;
+    const body = document.querySelector('#body').value;
 
-  const data = {
-    title,
-    body
-  }
+    // ES6 syntax. If the key is the same as the value, no need to specify it twice
+    // Equivalent to: title: title, body: body
+    const data = {
+        title,
+        body
+    }
 
-  // Create Post
-  http.post('http://localhost:3000/posts', data)
-    .then(data => {
-      ui.showAlert('Post added', 'alert alert-success');
-      ui.clearFields();
-      getPosts();
-    })
-    .catch(err => console.log(err));
+    // Create post
+    http.post('http://localhost:3000/posts', data)
+        .then(data => {
+            ui.showAlert('Post added', 'alert alert-success');
+            ui.clearFields();
+            getPosts();
+        })
+        .catch(err => console.log(err));
 }
