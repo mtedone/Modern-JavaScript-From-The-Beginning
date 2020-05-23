@@ -69,6 +69,8 @@ class UI {
         this.bodyInput.value = data.body;
         this.idInput.value = data.id;
     }
+
+
 }
 
 export const ui = new UI();
