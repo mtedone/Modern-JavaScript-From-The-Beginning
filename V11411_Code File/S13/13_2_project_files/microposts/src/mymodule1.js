@@ -1,4 +1,4 @@
 module.exports = {
-  name: 'Brad',
-  email: 'test@test.com'
+    name: 'Marco',
+    email: 'test@test.com'
 }
